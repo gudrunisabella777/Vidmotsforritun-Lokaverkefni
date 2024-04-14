@@ -47,6 +47,11 @@ public class Lagalisti {
         }
     }
 
+    public void setSongs(ObservableList<Lag> songs) {
+        listi = songs;
+        index = 0;
+    }
+
     /**
      * index á næsta lag á lagalista
      */

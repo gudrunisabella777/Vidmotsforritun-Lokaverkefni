@@ -14,10 +14,14 @@ package is.vidmot;
 import is.vinnsla.Lag;
 import is.vinnsla.Lagalistar;
 import is.vinnsla.Lagalisti;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +39,9 @@ public class ListiController  {
     // viðmótshlutir
     @FXML
     public ProgressBar fxProgressBar;   // progress bar fyrir spilun á lagi
+    public TextField fxLeitarTexti; // leitarTexti
+    public Button fxLeitaTakki; // button til að taka við orði sem á að leita að
+    public Button fxHreinsaLeitTakki;
     @FXML
     protected ImageView fxPlayPauseView; // mynd fyrir play/pause hnappinn
     @FXML
@@ -44,6 +51,7 @@ public class ListiController  {
 
     // vinnslan
     private Lagalisti lagalisti; // lagalistinn
+    private Lagalisti syningarListi; // Listinn sem er notaður til að birta lög
     private MediaPlayer player; // ein player breyta per forritið
     private Lag validLag;       // núverandi valið lag
 
@@ -54,10 +62,16 @@ public class ListiController  {
     public void initialize() {
         // setur lagalistann sem núverandi lagalista úr Lagalistar
         lagalisti = Lagalistar.getNuverandi();
+        // Afrita lista yfir í sýningarlista
+        //ObservableList<Lag> syningarListaLog = FXCollections.observableArrayList();
+        //lagalisti.getListi().forEach((Lag lag) -> syningarListaLog.add(lag));
+        //syningarListi = new Lagalisti();
+        //syningarListi.setSongs(syningarListaLog);
+        syningarListi = lagalisti;
         // tengdu lagalistann við ListView-ið
-        fxListView.setItems(lagalisti.getListi());
+        fxListView.setItems(syningarListi.getListi());
         // man hvaða lag var síðast spilað á lagalistanum og setur það sem valið stak á ListView
-        fxListView.getSelectionModel().select(lagalisti.getIndex());
+        fxListView.getSelectionModel().select(syningarListi.getIndex());
         // setur lagið í focus
         fxListView.requestFocus();
         // // Lætur lagalista vita hvert valda lagið er í viðmótinu og uppfærir myndina fyrir lagið
@@ -121,7 +135,7 @@ public class ListiController  {
         // hvaða lag er valið
         validLag = fxListView.getSelectionModel().getSelectedItem();
         //  láttu lagalista vita um indexinn á völdu lagi
-        lagalisti.setIndex(fxListView.getSelectionModel().getSelectedIndex());
+        syningarListi.setIndex(fxListView.getSelectionModel().getSelectedIndex());
         // uppfæra myndina fyrir lagið
         setjaMynd(fxMyndLagView, validLag.getMynd());
     }
@@ -176,13 +190,39 @@ public class ListiController  {
      */
     private void naestaLag() {
         // setja valið lag sem næsta lag á núverandi lagalista
-         lagalisti.naesti();
+         syningarListi.naesti();
         // uppfæra ListView til samræmis, þ.e. að næsta lag sé valið
-        fxListView.getSelectionModel().selectIndices(lagalisti.getIndex());
+        fxListView.getSelectionModel().selectIndices(syningarListi.getIndex());
         // velja lag
         veljaLag();
         // spila lag
         spilaLag();
+    }
+
+
+    public void onLeitaTakki(ActionEvent actionEvent) {
+        String leitarTexti = fxLeitarTexti.getText();
+        ObservableList<Lag> allSongs = lagalisti.getListi();
+        ObservableList<Lag> filterSongs = FXCollections.observableArrayList();
+
+        for (int i = 0; i < allSongs.size(); i += 1) {
+            String currentSongName = allSongs.get(i).getNafn();
+            if(currentSongName.contains(leitarTexti)){
+                filterSongs.add(allSongs.get(i));
+            }
+        }
+        
+        Lagalisti newSongList = new Lagalisti();
+        newSongList.setSongs(filterSongs);
+        syningarListi = newSongList;
+        fxListView.setItems(syningarListi.getListi());
+        fxListView.getSelectionModel().select(syningarListi.getIndex());
+    }
+
+    public void onHreinsaLeit(ActionEvent actionEvent) {
+        syningarListi = lagalisti;
+        fxListView.setItems(syningarListi.getListi());
+        fxListView.getSelectionModel().select(syningarListi.getIndex());
     }
 }
 
