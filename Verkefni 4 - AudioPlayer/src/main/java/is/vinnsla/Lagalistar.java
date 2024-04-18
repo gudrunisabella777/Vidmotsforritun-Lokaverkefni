@@ -1,11 +1,4 @@
 package is.vinnsla;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- *  Vinnsluklasi fyrir lagalista. Geymir 2 lagalista
- *****************************************************************************/
 import java.io.IOException;
 
 public class Lagalistar {
