@@ -1,11 +1,4 @@
 package is.vinnsla;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- * Vinnsluklasi fyrir áskrfianda. Hefur nafn
- *****************************************************************************/
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
