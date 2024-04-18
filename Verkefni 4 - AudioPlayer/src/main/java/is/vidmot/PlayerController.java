@@ -1,14 +1,4 @@
 package is.vidmot;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- *  Controller fyrir forsíðuna
- *
- *  Getur valið lagalista
- *
- *****************************************************************************/
 import is.vinnsla.Askrifandi;
 import is.vinnsla.Lagalistar;
 import javafx.event.ActionEvent;
