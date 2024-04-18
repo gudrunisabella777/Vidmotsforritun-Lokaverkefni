@@ -41,7 +41,9 @@ public class ListiController  {
     public ProgressBar fxProgressBar;   // progress bar fyrir spilun á lagi
     public TextField fxLeitarTexti; // leitarTexti
     public Button fxLeitaTakki; // button til að taka við orði sem á að leita að
-    public Button fxHreinsaLeitTakki;
+    public Button fxHreinsaLeitTakki; // takki til að birta aftur upprunalega lagalistann
+    public Button fxBaetaLagi;
+    public Button fxEydaVolduLagi;
     @FXML
     protected ImageView fxPlayPauseView; // mynd fyrir play/pause hnappinn
     @FXML
@@ -223,6 +225,17 @@ public class ListiController  {
         syningarListi = lagalisti;
         fxListView.setItems(syningarListi.getListi());
         fxListView.getSelectionModel().select(syningarListi.getIndex());
+    }
+
+    public void onBaetaLagi(ActionEvent actionEvent) {
+
+    }
+
+    public void onEydaVolduLagi(ActionEvent actionEvent) {
+        Lag validLag = fxListView.getSelectionModel().getSelectedItem();
+        if (validLag != null){
+            syningarListi.getListi().remove(validLag);
+        }
     }
 }
 

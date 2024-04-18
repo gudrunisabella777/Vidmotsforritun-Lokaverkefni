@@ -23,6 +23,7 @@ public class PlayerController  {
 
     // fastar
     public static final String ASKRIFANDI = "Áskrifandi";
+    public Button fxEditPlaylistTakki;
 
     // viðmótshlutir
     @FXML
@@ -61,5 +62,8 @@ public class PlayerController  {
         // Ef fékkst svar úr dialognum setjum við nafnið á áskrifandanum í notendaviðmótið
         utkoma.ifPresent (a -> {
             fxAskrifandi.setText(a.getNafn());});
+    }
+
+    public void onEditPlaylist(ActionEvent actionEvent) {
     }
 }

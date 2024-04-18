@@ -46,5 +46,7 @@
       <TextField fx:id="fxLeitarTexti" layoutX="35.0" layoutY="60.0" promptText="Leitarorð" />
       <Button fx:id="fxLeitaTakki" layoutX="35.0" layoutY="102.0" mnemonicParsing="false" onAction="#onLeitaTakki" text="Leita" />
       <Button fx:id="fxHreinsaLeitTakki" layoutX="108.0" layoutY="102.0" mnemonicParsing="false" onAction="#onHreinsaLeit" text="Hreinsa leit" />
+      <Button fx:id="fxBaetaLagi" layoutX="30.0" layoutY="162.0" mnemonicParsing="false" onAction="#onBaetaLagi" text="Bæta lagi" />
+      <Button fx:id="fxEydaVolduLagi" layoutX="108.0" layoutY="162.0" mnemonicParsing="false" onAction="#onEydaVolduLagi" text="Eyða völdu lagi" />
     </children>
 </AnchorPane>
