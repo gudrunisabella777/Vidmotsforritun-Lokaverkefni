@@ -1,14 +1,4 @@
 package is.vinnsla;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- * Vinnsluklasi fyrir lagalista. Lagalisti getur haft lista af Lag
- * Heldur utan um núverandi lag
- *
- *****************************************************************************/
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.File;
