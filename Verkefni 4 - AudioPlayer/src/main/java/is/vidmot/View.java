@@ -1,8 +1,4 @@
 package is.vidmot;
-
-/**
- * @author Almas Baimagambetov (almaslvl@gmail.com)
- */
 public enum View {
     HEIMA("heima-view.fxml"),
     LAGALISTI("listi-view.fxml"),
