@@ -1,16 +1,4 @@
 package is.vidmot;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- *  Controller fyrir lagalistann
- *  getur:
- *
- *  -- valið lag
- *  -- play / pause
- *  -- farið heim
- *****************************************************************************/
 import is.vinnsla.Lag;
 import is.vinnsla.Lagalistar;
 import is.vinnsla.Lagalisti;
