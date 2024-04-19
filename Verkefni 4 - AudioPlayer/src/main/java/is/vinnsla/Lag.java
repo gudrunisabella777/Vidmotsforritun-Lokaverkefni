@@ -14,22 +14,19 @@ public class Lag {
 
     private final int lengd;
 
-    private final String mynd;
 
 
     /**
      * Smiður sem tekur inn eiginleika lags og smíðar lagið
      *
      * @param slod  skráaslóð fyrir lagið
-     * @param mynd  mynd sem er sýnd þegar lagið er spilað
      * @param nafn  nafn lags
      * @param lengd lengd lags
      */
-    public Lag(String slod, String mynd, String nafn, int lengd) {
+    public Lag(String slod, String nafn, int lengd) {
         media = slod;
         this.nafn = nafn;
         this.lengd = lengd;
-        this.mynd = mynd;
     }
 
     @Override
@@ -47,9 +44,6 @@ public class Lag {
         return nafn;
     }
 
-    public String getMynd() {
-        return mynd;
-    }
 
     public int getLengd() {
         return lengd;

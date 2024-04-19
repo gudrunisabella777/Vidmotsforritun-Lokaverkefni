@@ -6,6 +6,7 @@ module is.vidmot {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
 
     opens is.vidmot to javafx.fxml, javafx.media;
     exports is.vidmot;

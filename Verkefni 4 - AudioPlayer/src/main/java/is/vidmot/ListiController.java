@@ -1,16 +1,4 @@
 package is.vidmot;
-/******************************************************************************
- *  Nafn    : Ebba Þóra Hvannberg
- *  T-póstur: ebba@hi.is
- *  Viðmótsforritun 2024
- *
- *  Controller fyrir lagalistann
- *  getur:
- *
- *  -- valið lag
- *  -- play / pause
- *  -- farið heim
- *****************************************************************************/
 import is.vinnsla.Lag;
 import is.vinnsla.Lagalistar;
 import is.vinnsla.Lagalisti;
@@ -27,7 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioSystem;
+
+import java.io.File;
 
 
 public class ListiController  {
@@ -114,7 +107,6 @@ public class ListiController  {
             player.play();                      // haltu áfram að spila
         }
     }
-
     /**
      * Fara aftur í heima view. Ef spilari er til stöðva spilarann
      *
@@ -138,8 +130,7 @@ public class ListiController  {
         validLag = fxListView.getSelectionModel().getSelectedItem();
         //  láttu lagalista vita um indexinn á völdu lagi
         syningarListi.setIndex(fxListView.getSelectionModel().getSelectedIndex());
-        // uppfæra myndina fyrir lagið
-        setjaMynd(fxMyndLagView, validLag.getMynd());
+
     }
 
     /**
@@ -176,9 +167,17 @@ public class ListiController  {
         if (player != null)
             player.stop();
         // Smíða nýjan player með nýju Media fyrir lagið
-        player = new MediaPlayer(new Media(getClass().getResource(validLag.getMedia()).toExternalForm()));
+        System.out.println(validLag.getMedia());
+        try {
+            player = new MediaPlayer(new Media(getClass().getResource(validLag.getMedia()).toExternalForm()));
+        } catch (Exception e) {
+            File songFile = new File(validLag.getMedia());
+            String songURI = songFile.toURI().toString();
+            Media media = new Media(songURI);
+            player = new MediaPlayer(media);
+        }
         // Láta player vita hvenær lagið endar - stop time
-        player.setStopTime(new Duration(validLag.getLengd()));
+        player.setStopTime(player.getTotalDuration());
         // setja fall sem er keyrð þegar lagið hættir
         player.setOnEndOfMedia(this::naestaLag);
         // setja listener tengingu á milli player og progress bar
@@ -227,8 +226,22 @@ public class ListiController  {
         fxListView.getSelectionModel().select(syningarListi.getIndex());
     }
 
-    public void onBaetaLagi(ActionEvent actionEvent) {
+    public void onBaetaLagi(ActionEvent actionEvent) throws Exception{
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Veldu lag");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.mp4"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        System.out.println(selectedFile);
+        System.out.println(selectedFile.getName());
 
+        //AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(selectedFile);
+        //long durationInMicroseconds = (Long) fileFormat.properties().get("duration");
+        //int durationInMilliSeconds = (int) (durationInMicroseconds / 1_000.0);
+        int durationinMilli = 15000;
+
+        Lag nyttLag = new Lag(selectedFile.getPath(), selectedFile.getName(), durationinMilli);
+        lagalisti.setSong(nyttLag);
     }
 
     public void onEydaVolduLagi(ActionEvent actionEvent) {

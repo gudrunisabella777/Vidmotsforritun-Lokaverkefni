@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/player.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="is.vidmot.ListiController">
+    <children>
+        <VBox layoutX="252.0" layoutY="38.0" prefHeight="297.0" prefWidth="209.0" spacing="10">
+            <children>
+                <HBox prefHeight="241.0" prefWidth="209.0" spacing="10">
+                    <children>
+                        <ListView fx:id="fxListView" onMouseClicked="#onValidLag" prefHeight="241.0" prefWidth="220.0" />
+                    </children>
+                </HBox>
+                <VBox prefHeight="45.0" prefWidth="209.0">
+                    <children>
+                        <HBox prefHeight="55.0" prefWidth="209.0" spacing="5">
+                            <children>
+                                <VBox prefHeight="70.0" prefWidth="168.0">
+                                    <children>
+                                        <ProgressBar fx:id="fxProgressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="168.0" progress="0.03" />
+                                    </children>
+                                </VBox>
+                                <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPlayPause" prefHeight="30.0" prefWidth="26.0" styleClass="image-button">
+                                    <graphic>
+                                        <ImageView fx:id="fxPlayPauseView" fitHeight="20" fitWidth="20">
+                                            <Image url="@images/pause.png" />
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+      <Button layoutX="252.0" layoutY="344.0" mnemonicParsing="false" onAction="#onHeim" prefHeight="25.0" prefWidth="209.0" text="Heim" />
+      <TextField fx:id="fxLeitarTexti" layoutX="35.0" layoutY="60.0" promptText="Leitarorð" />
+      <Button fx:id="fxLeitaTakki" layoutX="35.0" layoutY="102.0" mnemonicParsing="false" onAction="#onLeitaTakki" text="Leita" />
+      <Button fx:id="fxHreinsaLeitTakki" layoutX="108.0" layoutY="102.0" mnemonicParsing="false" onAction="#onHreinsaLeit" text="Hreinsa leit" />
+      <Button fx:id="fxBaetaLagi" layoutX="30.0" layoutY="162.0" mnemonicParsing="false" onAction="#onBaetaLagi" text="Bæta lagi" />
+      <Button fx:id="fxEydaVolduLagi" layoutX="108.0" layoutY="162.0" mnemonicParsing="false" onAction="#onEydaVolduLagi" text="Eyða völdu lagi" />
+    </children>
+</AnchorPane>

@@ -39,7 +39,9 @@ public class Lagalisti {
             while (scanner.hasNextLine()) {
 
                 lina = scanner.nextLine().split(" ");
-                listi.add(new Lag (lina[0], lina [3], lina[1], Integer.parseInt(lina[2])));
+                Lag nyttLag = new Lag (lina[0], lina[1], Integer.parseInt(lina[2]));
+                listi.add(nyttLag);
+                System.out.println(nyttLag.getMedia());
             }
             scanner.close();
         }catch (RuntimeException e) {
@@ -50,6 +52,9 @@ public class Lagalisti {
     public void setSongs(ObservableList<Lag> songs) {
         listi = songs;
         index = 0;
+    }
+    public void setSong(Lag lag){
+        listi.add(lag);
     }
 
     /**

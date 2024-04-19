@@ -25,7 +25,6 @@
                             <children>
                                 <VBox prefHeight="70.0" prefWidth="168.0">
                                     <children>
-                                        <ImageView fx:id="fxMyndLagView" fitHeight="30.0" fitWidth="168.0" />
                                         <ProgressBar fx:id="fxProgressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="168.0" progress="0.03" />
                                     </children>
                                 </VBox>
